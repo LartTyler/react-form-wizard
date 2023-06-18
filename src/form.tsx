@@ -1,13 +1,10 @@
 import React from 'react';
 import {displayName} from './common';
-import {ControlsContext} from './context/controls';
-import {ErrorContext} from './context/error';
-import {FieldState} from './context/field-state';
-import {FieldsContext} from './context/fields';
+import {ControlsContext, ErrorContext, FieldsContext, FieldState} from './context';
 
 interface Props {
 	children: React.ReactNode,
-	onSubmit?: () => void,
+	onSubmit?: (event?: React.FormEvent) => void,
 	action?: string,
 	method?: string,
 }
@@ -63,7 +60,7 @@ export const Form: React.FC<Props> = ({children, onSubmit, ...formProps}) => {
 	}, [step, childCount, fieldState, onSubmit]);
 
 	return (
-		<form {...formProps}>
+		<form onSubmit={onSubmit} {...formProps}>
 			<FieldsContext.Provider value={fieldsContextValue}>
 				<ErrorContext.Provider value={errorsContextValue}>
 					<ControlsContext.Provider value={controlsContextValue}>

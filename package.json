@@ -24,5 +24,8 @@
 		"@types/react": {
 			"optional": true
 		}
+	},
+	"scripts": {
+		"build": "tsc"
 	}
 }
